@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="it" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ambulatorio Medico Dr. Rossi</title>
+
+  <!--
+    BOOTSTRAP CSS
+    Includiamo il file CSS di Bootstrap che hai già nella cartella.
+    Bootstrap ci dà classi pronte per layout, colori, bottoni, ecc.
+  -->
+  <link rel="stylesheet" href="bootstrap.min.css">
+
+  <!-- Il nostro CSS aggiuntivo per personalizzare il carosello -->
+  <link rel="stylesheet" href="carousel.css">
+
+  <!-- Stili aggiuntivi specifici per questo sito -->
+  <style>
+    /* Colore principale del sito (verde medico) */
+    :root {
+      --colore-primario: #0d6e4f;
+    }
+
+    /* Hero section con sfondo colorato */
+    .hero {
+      background: linear-gradient(135deg, #0d6e4f 0%, #198754 100%);
+      color: white;
+      padding: 5rem 0;
+    }
+
+    /* Card servizi: bordo colorato in alto */
+    .card-servizio {
+      border-top: 4px solid var(--colore-primario);
+      transition: transform 0.2s;
+    }
+    .card-servizio:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Icone grandi nelle card */
+    .icona-servizio {
+      font-size: 2.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+    NAVBAR — Barra di navigazione
+    Classi chiave:
+      navbar            → componente navbar Bootstrap
+      navbar-expand-lg  → su schermi grandi (lg) i link sono visibili,
+                          su mobile collassano in un menù hamburger
+      navbar-dark       → testo/icone bianchi (per sfondi scuri)
+      bg-success        → sfondo verde Bootstrap
+      sticky-top        → la navbar rimane fissa in cima scorrendo
+  ============================================================ -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+    <div class="container">
+
+      <!-- Logo / nome del sito -->
+      <a class="navbar-brand fw-bold" href="#">🩺 Dr. Rossi</a>
+
+      <!--
+        Bottone hamburger per mobile.
+        data-bs-toggle="collapse" e data-bs-target="#navMenu"
+        dicono a Bootstrap quale elemento aprire/chiudere.
+      -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false"
+              aria-label="Apri menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links del menu — collassano su mobile -->
+      <div class="collapse navbar-collapse" id="navMenu">
+        <!--
+          ms-auto → margin-start: auto → spinge i link a destra
+          navbar-nav → contenitore standard per i link
+        -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#servizi">Servizi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#orari">Orari</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contatti">Contatti</a>
+          </li>
+          <!-- Bottone prenotazione evidenziato -->
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-light text-success fw-bold" href="#contatti">
+              Prenota visita
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Fine NAVBAR -->
+
+
+  <!-- ============================================================
+    HERO SECTION — Sezione principale (prima cosa che l'utente vede)
+    Usiamo le nostre classi CSS + classi Bootstrap per testo e layout.
+  ============================================================ -->
+  <section class="hero" id="home">
+    <div class="container">
+      <!--
+        GRIGLIA BOOTSTRAP — Sistema a 12 colonne
+        row      → riga della griglia
+        col-lg-6 → su schermi grandi occupa 6 colonne (metà)
+        col-12   → su mobile occupa 12 colonne (tutta la larghezza)
+        align-items-center → allinea verticalmente al centro
+      -->
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-6">
+          <!-- display-4 → titolo grande, fw-bold → grassetto -->
+          <h1 class="display-4 fw-bold mb-3">
+            La tua salute,<br>la nostra priorità
+          </h1>
+          <p class="lead mb-4">
+            Medicina generale e specialistica nel cuore della città.
+            Prenota la tua visita in pochi secondi.
+          </p>
+          <!--
+            BOTTONI Bootstrap:
+            btn          → classe base obbligatoria
+            btn-light    → bottone bianco
+            btn-outline-light → bottone trasparente con bordo bianco
+            btn-lg       → bottone grande
+            me-3         → margin-end (destra) di 3 unità
+          -->
+          <a href="#contatti" class="btn btn-light btn-lg text-success fw-bold me-3">
+            Prenota ora
+          </a>
+          <a href="#servizi" class="btn btn-outline-light btn-lg">
+            Scopri i servizi
+          </a>
+        </div>
+
+        <!-- Immagine lato destro — nascosta su mobile con d-none d-lg-block -->
+        <div class="col-lg-6 d-none d-lg-block text-center">
+          <img src="https://via.placeholder.com/450x300/ffffff/0d6e4f?text=Ambulatorio"
+               alt="Ambulatorio" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fine HERO -->
+
+
+  <!-- ============================================================
+    CAROSELLO Bootstrap
+    Classe carousel con data-bs-ride="carousel" per avvio automatico.
+    carousel-fade → dissolvenza invece di scorrimento laterale
+  ============================================================ -->
+  <div id="myCarousel" class="carousel carousel-fade" data-bs-ride="carousel">
+
+    <!-- Indicatori (pallini) -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0"
+              class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Slide -->
+    <div class="carousel-inner">
+
+      <!-- Prima slide — active è OBBLIGATORIO sulla prima -->
+      <div class="carousel-item active" style="background-color: #e8f5e9;">
+        <div class="container d-flex align-items-center justify-content-center"
+             style="height: 32rem;">
+          <div class="text-center">
+            <h2 class="display-5 fw-bold text-success">Medicina Generale</h2>
+            <p class="lead text-secondary">Visite e controlli per tutta la famiglia</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" style="background-color: #e3f2fd;">
+        <div class="container d-flex align-items-center justify-content-center"
+             style="height: 32rem;">
+          <div class="text-center">
+            <h2 class="display-5 fw-bold text-primary">Cardiologia</h2>
+            <p class="lead text-secondary">ECG, holter e visite specialistiche</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" style="background-color: #fce4ec;">
+        <div class="container d-flex align-items-center justify-content-center"
+             style="height: 32rem;">
+          <div class="text-center">
+            <h2 class="display-5 fw-bold text-danger">Dermatologia</h2>
+            <p class="lead text-secondary">Diagnosi e trattamento malattie della pelle</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Frecce avanti/indietro -->
+    <button class="carousel-control-prev" type="button"
+            data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Precedente</span>
+    </button>
+    <button class="carousel-control-next" type="button"
+            data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Successivo</span>
+    </button>
+  </div>
+  <!-- Fine CAROSELLO -->
+
+
+  <!-- ============================================================
+    SEZIONE SERVIZI — Cards Bootstrap
+    py-5     → padding verticale 5 unità
+    bg-light → sfondo grigio chiarissimo
+  ============================================================ -->
+  <section class="py-5 bg-light" id="servizi">
+    <div class="container">
+
+      <!-- Intestazione sezione centrata -->
+      <div class="row mb-5">
+        <div class="col text-center">
+          <h2 class="fw-bold">I nostri servizi</h2>
+          <!-- text-muted → testo grigio -->
+          <p class="text-muted lead">Tutto ciò di cui hai bisogno in un unico posto</p>
+        </div>
+      </div>
+
+      <!--
+        CARDS — 3 per riga su desktop, 1 per riga su mobile
+        col-md-6  → 2 colonne su tablet
+        col-lg-4  → 3 colonne su desktop
+        g-4       → gap (spazio) tra le colonne
+      -->
+      <div class="row g-4">
+
+        <!-- Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <!--
+            card         → componente card Bootstrap
+            h-100        → altezza 100% (tutte le card della stessa riga
+                           avranno la stessa altezza)
+            shadow-sm    → ombra leggera
+          -->
+          <div class="card h-100 shadow-sm card-servizio">
+            <div class="card-body text-center p-4">
+              <div class="icona-servizio mb-3">🫀</div>
+              <h5 class="card-title fw-bold">Cardiologia</h5>
+              <p class="card-text text-muted">
+                Elettrocardiogramma, holter cardiaco e visita specialistica cardiologica.
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <a href="#contatti" class="btn btn-success btn-sm">Prenota</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm card-servizio">
+            <div class="card-body text-center p-4">
+              <div class="icona-servizio mb-3">🩺</div>
+              <h5 class="card-title fw-bold">Medicina Generale</h5>
+              <p class="card-text text-muted">
+                Visite di controllo, certificati medici, prescrizioni e prevenzione.
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <a href="#contatti" class="btn btn-success btn-sm">Prenota</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm card-servizio">
+            <div class="card-body text-center p-4">
+              <div class="icona-servizio mb-3">🔬</div>
+              <h5 class="card-title fw-bold">Dermatologia</h5>
+              <p class="card-text text-muted">
+                Diagnosi e trattamento di acne, psoriasi, eczemi e nei sospetti.
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <a href="#contatti" class="btn btn-success btn-sm">Prenota</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm card-servizio">
+            <div class="card-body text-center p-4">
+              <div class="icona-servizio mb-3">👁️</div>
+              <h5 class="card-title fw-bold">Oculistica</h5>
+              <p class="card-text text-muted">
+                Esame del fondo oculare, misurazione della vista e prescrizione occhiali.
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <a href="#contatti" class="btn btn-success btn-sm">Prenota</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm card-servizio">
+            <div class="card-body text-center p-4">
+              <div class="icona-servizio mb-3">🦷</div>
+              <h5 class="card-title fw-bold">Odontoiatria</h5>
+              <p class="card-text text-muted">
+                Pulizia dentale, otturazioni, estrazioni e igiene orale professionale.
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <a href="#contatti" class="btn btn-success btn-sm">Prenota</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm card-servizio">
+            <div class="card-body text-center p-4">
+              <div class="icona-servizio mb-3">🧠</div>
+              <h5 class="card-title fw-bold">Neurologia</h5>
+              <p class="card-text text-muted">
+                Valutazione neurologica, cefalee, disturbi del sonno e tremori.
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <a href="#contatti" class="btn btn-success btn-sm">Prenota</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- Fine SERVIZI -->
+
+
+  <!-- ============================================================
+    SEZIONE ORARI — Tabella Bootstrap
+  ============================================================ -->
+  <section class="py-5" id="orari">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+
+          <h2 class="fw-bold text-center mb-4">Orari di apertura</h2>
+
+          <!--
+            TABELLA Bootstrap:
+            table          → stili base tabella
+            table-striped  → righe alternate con sfondo grigio
+            table-hover    → riga si evidenzia al passaggio del mouse
+            table-bordered → bordi su tutte le celle
+          -->
+          <table class="table table-striped table-hover table-bordered text-center">
+            <thead class="table-success">
+              <tr>
+                <th>Giorno</th>
+                <th>Mattina</th>
+                <th>Pomeriggio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fw-bold">Lunedì</td>
+                <td>08:30 – 12:30</td>
+                <td>15:00 – 19:00</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Martedì</td>
+                <td>08:30 – 12:30</td>
+                <td>15:00 – 19:00</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Mercoledì</td>
+                <td>08:30 – 12:30</td>
+                <td class="text-muted fst-italic">Chiuso</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Giovedì</td>
+                <td>08:30 – 12:30</td>
+                <td>15:00 – 19:00</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Venerdì</td>
+                <td>08:30 – 12:30</td>
+                <td>15:00 – 18:00</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Sabato</td>
+                <td>09:00 – 12:00</td>
+                <td class="text-muted fst-italic">Chiuso</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-muted">Domenica</td>
+                <td class="text-muted fst-italic" colspan="2">Chiuso</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!--
+            ALERT Bootstrap — messaggio evidenziato
+            alert          → classe base
+            alert-warning  → sfondo giallo (avviso)
+          -->
+          <div class="alert alert-warning mt-3" role="alert">
+            ⚠️ Per urgenze fuori orario, chiamare il <strong>118</strong>
+            o il medico di guardia.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fine ORARI -->
+
+
+  <!-- ============================================================
+    SEZIONE CONTATTI — Form Bootstrap
+  ============================================================ -->
+  <section class="py-5 bg-light" id="contatti">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+
+          <h2 class="fw-bold text-center mb-2">Contattaci</h2>
+          <p class="text-center text-muted mb-5">
+            Compila il modulo e ti ricontatteremo entro 24 ore.
+          </p>
+
+          <!--
+            FORM Bootstrap:
+            mb-3      → margin-bottom tra i campi
+            form-label → etichetta campo
+            form-control → stile input/textarea
+            form-select  → stile menu a tendina
+          -->
+          <form>
+
+            <!-- Riga con due campi affiancati -->
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome"
+                       placeholder="Mario" required>
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="cognome" class="form-label">Cognome</label>
+                <input type="text" class="form-control" id="cognome"
+                       placeholder="Rossi" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email"
+                     placeholder="mario.rossi@email.it" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Telefono</label>
+              <input type="tel" class="form-control" id="telefono"
+                     placeholder="+39 333 000 0000">
+            </div>
+
+            <div class="mb-3">
+              <label for="servizio" class="form-label">Tipo di visita</label>
+              <select class="form-select" id="servizio">
+                <option value="">— Seleziona un servizio —</option>
+                <option>Medicina Generale</option>
+                <option>Cardiologia</option>
+                <option>Dermatologia</option>
+                <option>Oculistica</option>
+                <option>Odontoiatria</option>
+                <option>Neurologia</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label for="messaggio" class="form-label">Messaggio</label>
+              <textarea class="form-control" id="messaggio" rows="4"
+                        placeholder="Descrivi brevemente il motivo della visita..."></textarea>
+            </div>
+
+            <!-- Checkbox con form-check -->
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="privacy" required>
+              <label class="form-check-label" for="privacy">
+                Accetto il trattamento dei dati personali ai sensi del GDPR
+              </label>
+            </div>
+
+            <!-- Bottone invio — w-100 → larghezza 100% -->
+            <button type="submit" class="btn btn-success btn-lg w-100">
+              Invia richiesta
+            </button>
+
+          </form>
+
+          <!-- Info contatto diretto -->
+          <hr class="my-5">
+          <div class="row text-center g-4">
+            <div class="col-12 col-md-4">
+              <p class="fs-4">📍</p>
+              <p class="fw-bold mb-0">Indirizzo</p>
+              <p class="text-muted">Via Roma 1, Milano</p>
+            </div>
+            <div class="col-12 col-md-4">
+              <p class="fs-4">📞</p>
+              <p class="fw-bold mb-0">Telefono</p>
+              <p class="text-muted">02 1234 5678</p>
+            </div>
+            <div class="col-12 col-md-4">
+              <p class="fs-4">✉️</p>
+              <p class="fw-bold mb-0">Email</p>
+              <p class="text-muted">info@drrossi.it</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fine CONTATTI -->
+
+
+  <!-- ============================================================
+    FOOTER
+    bg-dark text-light → sfondo scuro, testo chiaro
+    mt-auto           → spinge il footer in fondo
+  ============================================================ -->
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <strong>🩺 Ambulatorio Dr. Rossi</strong><br>
+          <small class="text-secondary">P.IVA 01234567890</small>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <small class="text-secondary">
+            © 2024 Ambulatorio Medico Dr. Rossi — Tutti i diritti riservati
+          </small>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Fine FOOTER -->
+
+
+  <!--
+    BOOTSTRAP JS
+    Va incluso PRIMA della chiusura </body>.
+    bundle.min.js include anche Popper.js (serve per dropdown, tooltip, ecc.)
+  -->
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="color-modes.js"></script>
+
+</body>
+</html>
