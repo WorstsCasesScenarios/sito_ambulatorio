@@ -439,108 +439,92 @@
 
 
   <!-- ============================================================
-    SEZIONE CONTATTI — Form Bootstrap
+    SEZIONE CONTATTI — Card Bootstrap
+    Tre card affiancate, una per ogni canale di contatto.
+
+    Struttura base di una card Bootstrap:
+      <div class="card">
+        <img class="card-img-top" ...>   ← immagine in cima (opzionale)
+        <div class="card-body">
+          <h5 class="card-title">...</h5>
+          <p class="card-text">...</p>
+          <a class="btn btn-primary">...</a>
+        </div>
+      </div>
   ============================================================ -->
   <section class="py-5 bg-light" id="contatti">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-8">
 
-          <h2 class="fw-bold text-center mb-2">Contattaci</h2>
-          <p class="text-center text-muted mb-5">
-            Compila il modulo e ti ricontatteremo entro 24 ore.
-          </p>
+      <div class="row mb-5">
+        <div class="col text-center">
+          <h2 class="fw-bold">Contattaci</h2>
+          <p class="text-muted lead">Siamo a tua disposizione in diversi modi</p>
+        </div>
+      </div>
 
-          <!--
-            FORM Bootstrap:
-            mb-3      → margin-bottom tra i campi
-            form-label → etichetta campo
-            form-control → stile input/textarea
-            form-select  → stile menu a tendina
-          -->
-          <form>
+      <!--
+        3 card affiancate — stessa struttura delle card Servizi:
+        col-md-4 → 3 colonne su tablet e desktop
+        h-100    → tutte le card hanno la stessa altezza nella riga
+        g-4      → gap tra le colonne
+      -->
+      <div class="row g-4 justify-content-center">
 
-            <!-- Riga con due campi affiancati -->
-            <div class="row g-3 mb-3">
-              <div class="col-12 col-md-6">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome"
-                       placeholder="Mario" required>
-              </div>
-              <div class="col-12 col-md-6">
-                <label for="cognome" class="form-label">Cognome</label>
-                <input type="text" class="form-control" id="cognome"
-                       placeholder="Rossi" required>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email"
-                     placeholder="mario.rossi@email.it" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="telefono" class="form-label">Telefono</label>
-              <input type="tel" class="form-control" id="telefono"
-                     placeholder="+39 333 000 0000">
-            </div>
-
-            <div class="mb-3">
-              <label for="servizio" class="form-label">Tipo di visita</label>
-              <select class="form-select" id="servizio">
-                <option value="">— Seleziona un servizio —</option>
-                <option>Medicina Generale</option>
-                <option>Cardiologia</option>
-                <option>Dermatologia</option>
-                <option>Oculistica</option>
-                <option>Odontoiatria</option>
-                <option>Neurologia</option>
-              </select>
-            </div>
-
-            <div class="mb-4">
-              <label for="messaggio" class="form-label">Messaggio</label>
-              <textarea class="form-control" id="messaggio" rows="4"
-                        placeholder="Descrivi brevemente il motivo della visita..."></textarea>
-            </div>
-
-            <!-- Checkbox con form-check -->
-            <div class="form-check mb-4">
-              <input class="form-check-input" type="checkbox" id="privacy" required>
-              <label class="form-check-label" for="privacy">
-                Accetto il trattamento dei dati personali ai sensi del GDPR
-              </label>
-            </div>
-
-            <!-- Bottone invio — w-100 → larghezza 100% -->
-            <button type="submit" class="btn btn-success btn-lg w-100">
-              Invia richiesta
-            </button>
-
-          </form>
-
-          <!-- Info contatto diretto -->
-          <hr class="my-5">
-          <div class="row text-center g-4">
-            <div class="col-12 col-md-4">
-              <p class="fs-4">📍</p>
-              <p class="fw-bold mb-0">Indirizzo</p>
-              <p class="text-muted">Via Roma 1, Milano</p>
-            </div>
-            <div class="col-12 col-md-4">
-              <p class="fs-4">📞</p>
-              <p class="fw-bold mb-0">Telefono</p>
-              <p class="text-muted">02 1234 5678</p>
-            </div>
-            <div class="col-12 col-md-4">
-              <p class="fs-4">✉️</p>
-              <p class="fw-bold mb-0">Email</p>
-              <p class="text-muted">info@drrossi.it</p>
+        <!-- Card Indirizzo -->
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm text-center">
+            <!--
+              card-img-top → immagine che occupa tutta la larghezza in cima.
+              Qui usiamo un placeholder colorato come nell'esempio Bootstrap.
+            -->
+            <img class="card-img-top"
+                 src="https://via.placeholder.com/400x160/198754/ffffff?text=📍"
+                 alt="Indirizzo ambulatorio">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Dove siamo</h5>
+              <p class="card-text text-muted">
+                Via Roma 1, Milano<br>
+                Secondo piano, interno 5
+              </p>
+              <a href="#" class="btn btn-success">Apri su Maps</a>
             </div>
           </div>
-
         </div>
+
+        <!-- Card Telefono -->
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm text-center">
+            <img class="card-img-top"
+                 src="https://via.placeholder.com/400x160/0d6e4f/ffffff?text=📞"
+                 alt="Telefono ambulatorio">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Chiamaci</h5>
+              <p class="card-text text-muted">
+                02 1234 5678<br>
+                Lun–Ven: 08:30 – 19:00
+              </p>
+              <a href="tel:0212345678" class="btn btn-success">Chiama ora</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Email -->
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm text-center">
+            <img class="card-img-top"
+                 src="https://via.placeholder.com/400x160/157347/ffffff?text=✉️"
+                 alt="Email ambulatorio">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Scrivici</h5>
+              <p class="card-text text-muted">
+                info@drrossi.it<br>
+                Risposta entro 24 ore
+              </p>
+              <a href="mailto:info@drrossi.it" class="btn btn-success">Invia email</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
